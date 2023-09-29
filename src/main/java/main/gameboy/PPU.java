@@ -1,4 +1,4 @@
 package main.gameboy;
 
-public class ppu {
+public class PPU {
 }
