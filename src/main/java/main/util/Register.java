@@ -100,6 +100,18 @@ public class Register {
     }
 
     /**
+     * gets 2 Registers as one bigger register
+     * @param r1 More significant bits
+     * @param r2 Less significant bits
+     * @return The value of both registers combined
+     */
+    public static int get2RegistersAsValue(Register r1, Register r2){
+        int value1 = r1.getValue();
+        int value2 = r2.getValue();
+        return value2+(value1<<r2.size);
+    }
+
+    /**
      * A class for Exceptions in the Register
      */
     public static class RegisterException extends RuntimeException{
