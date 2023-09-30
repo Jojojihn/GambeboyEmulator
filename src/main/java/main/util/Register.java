@@ -1,10 +1,28 @@
 package main.util;
 
+/**
+ * A class to emulate one cpu register
+ */
 public class Register {
+    /**
+     * The value of the register, should be a {@link Register#size} sized bitvalue
+     */
     private int value = 0;
-    private final int size;
+    /**
+     * The size aka amount of bits of the register
+     */
+    public final int size;
+    /**
+     * A mask with {@link Register#size} amount of bits used for calculations
+     */
     private final int mask;
 
+    /**
+     * Get one bit from the register
+     * @param bit The number of bit to get (0-{@link Register#size})
+     * @return The value of the bit as a boolean
+     * @throws RegisterException If a bit was tried to access, which doesn't exist in the register
+     */
     public boolean getBit(int bit) {
         if(bit>=size){
             throw new RegisterException("Tried to access nonexistent bit!");
@@ -15,6 +33,12 @@ public class Register {
         return tempregister > 0;
     }
 
+    /**
+     * Set a single bit of the register
+     * @param bit Which bit to set
+     * @param value Which value to set the bit to
+     * @throws RegisterException If a bit was tried to access, which doesn't exist in the register
+     */
     public void setBit(int bit, boolean value){
         if(bit>=size){
             throw new RegisterException("Tried to access nonexistent bit!");
@@ -29,23 +53,42 @@ public class Register {
 
     }
 
+    /**
+     * Create a register with a specific size
+     * @param size The size aka amount of bits for the register
+     */
     public Register(int size){
         this.size = size;
         this.mask = (int)Math.pow(2,size)-1;
     }
 
+    /**
+     * Create a default 8-bit register, for different sizes use {@link Register#Register(int size)}
+     */
     public Register(){
         this(8);
     }
 
+    /**
+     * Gets the value of the register as an int
+     * @return The value of the register as an int
+     */
     public int getValue(){
         return value;
     }
 
+    /**
+     * Set the value of the register to the given int, bits that don't fit are simply cut off
+     * @param value The value to set the register to
+     */
     public void setValue(int value){
         this.value = value & this.mask;
     }
 
+    /**
+     * Turn the register into a readable form, most significant bit to the left, least significant bit to the right
+     * @return The registers bits in square brackets
+     */
     @Override
     public String toString() {//TODO Increase performance maybe
         String output = "[";
@@ -55,7 +98,15 @@ public class Register {
         output += "]";
         return output;
     }
+
+    /**
+     * A class for Exceptions in the Register
+     */
     public static class RegisterException extends RuntimeException{
+        /**
+         * Something went wrong with the registers
+         * @param error Error message
+         */
         public RegisterException(String error){
             super(error);
         }
