@@ -10,9 +10,10 @@ public class CPU {
     private Register e;
     private Register h;
     private Register l;
-
-
-
+    private static final int ZERO_FLAG = 7;
+    private static final int SUBTRACTION_FLAG = 6;
+    private static final int HALF_CARRY_FLAG = 5;
+    private static final int CARRY_FLAG = 4;
 
 
 }
