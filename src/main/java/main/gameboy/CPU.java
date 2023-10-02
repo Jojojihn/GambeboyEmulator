@@ -15,5 +15,14 @@ public class CPU {
     private static final int HALF_CARRY_FLAG = 5;
     private static final int CARRY_FLAG = 4;
 
+    void clockCycle(){
+        //Fetch
+
+        //Decode
+
+        //Execute
+
+    }
+
 
 }
